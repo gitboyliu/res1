@@ -25,8 +25,7 @@ public class AccountService {
     private AccountDao accountMapper;
 
     public List<Account> findAccountList() {
-        List<Account> list=null;
-        list = (List<Account>) redisUtil.getValue("listKey");
+        List<Account> list = (List<Account>) redisUtil.getValue("listKey");
         if(list==null){
             list = accountMapper.findAccountList();
             redisUtil.setValue("listKey",list,180, TimeUnit.SECONDS);
